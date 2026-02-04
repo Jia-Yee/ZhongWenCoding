@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新年快乐 - 2026马年</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background-color: #f8f0e3;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 20px 0;
+            background: linear-gradient(135deg, #e63946, #c1121f);
+            color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1000;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            opacity: 0.9;
+        }
+        
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .image-section {
+            width: 100%;
+            max-width: 800px;
+            background-color: transparent;
+            padding: 0;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .new-year-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .new-year-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .image-caption {
+            font-size: 1.2rem;
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        .wishes-section {
+            width: 100%;
+            max-width: 800px;
+            background-color: transparent;
+            padding: 0;
+            border-radius: 10px;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            color: #c1121f;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #ffb703;
+            padding-bottom: 10px;
+        }
+        
+        .combined-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .item {
+            padding: 6px;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            opacity: 0.7;
+            overflow: hidden;
+        }
+        
+        .wish-item,
+        .idiom-item {
+            animation: scroll 10s infinite linear;
+        }
+        
+        @keyframes scroll {
+            0% {
+                transform: rotate(-5deg);
+            }
+            50% {
+                transform: rotate(5deg);
+            }
+            100% {
+                transform: rotate(-5deg);
+            }
+        }
+        
+        .item:hover {
+            transform: translateY(-3px) scale(1.05);
+            opacity: 1;
+        }
+        
+        .wish-item {
+            background: linear-gradient(135deg, #ffb703, #fb8500);
+            color: #fff;
+        }
+        
+        .idiom-item {
+            background: linear-gradient(135deg, #023047, #023e8a);
+            color: #fff;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #c1121f;
+            color: #fff;
+            border-radius: 10px;
+        }
+        
+        .footer-content {
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+            
+            .wishes-list,
+            .idioms-list {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        #fireworks-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .image-section {
+            position: relative;
+            z-index: 999;
+            opacity: 0.8;
+        }
+        
+        .item {
+            position: relative;
+            z-index: 2;
+        }
+        
+        h2,
+        h3 {
+            position: relative;
+            z-index: 2;
+        }
+        
+        h1 {
+            position: relative;
+            z-index: 1000;
+        }
+        
+        .container {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .wish-item,
+        .idiom-item,
+        h1,
+        h2,
+        h3 {
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0.7;
+        }
+        
+        .wish-item:hover,
+        .idiom-item:hover,
+        h1:hover,
+        h2:hover,
+        h3:hover {
+            opacity: 1;
+        }
+        
+        .moving {
+            animation: move 15s infinite ease-in-out;
+        }
+        
+        @keyframes move {
+            0% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+            }
+            10% {
+                transform: translate(15px, -5px) rotate(1deg) scale(1.05);
+            }
+            20% {
+                transform: translate(5px, -15px) rotate(-0.5deg) scale(1);
+            }
+            30% {
+                transform: translate(-10px, -10px) rotate(0.5deg) scale(0.95);
+            }
+            40% {
+                transform: translate(-15px, 5px) rotate(-1deg) scale(1);
+            }
+            50% {
+                transform: translate(0, 10px) rotate(0deg) scale(1.05);
+            }
+            60% {
+                transform: translate(10px, 5px) rotate(1deg) scale(1);
+            }
+            70% {
+                transform: translate(15px, -10px) rotate(-0.5deg) scale(0.95);
+            }
+            80% {
+                transform: translate(5px, -15px) rotate(0.5deg) scale(1);
+            }
+            90% {
+                transform: translate(-5px, -5px) rotate(-1deg) scale(1.05);
+            }
+            100% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>新年快乐</h1>
+            <p class="subtitle">2026马年大吉</p>
+        </header>
+        
+        <div class="main-content">
+            <section class="image-section">
+                <img src="new-year-image.jpg" alt="新年快乐" class="new-year-image">
+            </section>
+            
+            <section class="wishes-section">
+                <div class="combined-list">
+                    <div class="item wish-item">新年快乐</div>
+                    <div class="item wish-item">万事如意</div>
+                    <div class="item wish-item">心想事成</div>
+                    <div class="item wish-item">步步高升</div>
+                    <div class="item wish-item">财源广进</div>
+                    <div class="item wish-item">身体健康</div>
+                    <div class="item idiom-item">马到成功</div>
+                    <div class="item idiom-item">龙马精神</div>
+                    <div class="item idiom-item">一马当先</div>
+                    <div class="item idiom-item">万马奔腾</div>
+                    <div class="item idiom-item">马不停蹄</div>
+                    <div class="item idiom-item">马壮人强</div>
+                </div>
+            </section>
+        </div>
+        
+        <footer>
+            <div class="footer-content">
+                <p>© 2026 新年快乐 | 马年大吉</p>
+            </div>
+        </footer>
+    </div>
+    
+    <canvas id="fireworks-canvas"></canvas>
+    
+    <script>
+        // 烟花效果实现
+        const canvas = document.getElementById('fireworks-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // 设置Canvas尺寸
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        // 烟花和粒子数组
+        const fireworks = [];
+        const particles = [];
+        
+        // 颜色数组
+        const colors = ['#ff0000', '#ff9900', '#ffff00', '#00ff00', '#00ffff', '#0000ff', '#ff00ff'];
+        
+        // 随机数生成函数
+        function random(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+        
+        // 距离计算函数
+        function distance(x1, y1, x2, y2) {
+            return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+        }
+        
+        // 粒子类
+        class Particle {
+            constructor(x, y, color) {
+                this.x = x;
+                this.y = y;
+                this.color = color;
+                this.size = random(1, 5);
+                this.speedX = random(-8, 8);
+                this.speedY = random(-8, 8);
+                this.gravity = 0.2;
+                this.friction = 0.93;
+                this.opacity = 0.8;
+                this.life = 1;
+                this.decay = random(0.01, 0.03);
+            }
+            
+            update() {
+                this.speedX *= this.friction;
+                this.speedY *= this.friction;
+                this.speedY += this.gravity;
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.opacity -= this.decay;
+                this.life -= this.decay;
+                
+                // 粒子大小变化
+                if (this.life > 0.5) {
+                    this.size += 0.1;
+                } else {
+                    this.size *= 0.98;
+                }
+            }
+            
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+                
+                // 添加光晕效果
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = this.color;
+                ctx.restore();
+            }
+        }
+        
+        // 烟花类
+        class Firework {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.color = colors[Math.floor(random(0, colors.length))];
+                this.size = 5;
+                this.speedX = random(-4, 4);
+                this.speedY = random(-20, -12);
+                this.gravity = 0.2;
+                this.friction = 0.99;
+                this.exploded = false;
+                this.particles = [];
+                this.brightness = random(50, 100);
+            }
+            
+            update() {
+                this.speedX *= this.friction;
+                this.speedY *= this.friction;
+                this.speedY += this.gravity;
+                this.x += this.speedX;
+                this.y += this.speedY;
+                
+                // 绘制上升轨迹
+                ctx.save();
+                ctx.globalAlpha = 0.5;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size / 2, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+                ctx.restore();
+                
+                if (this.speedY >= 0) {
+                    this.exploded = true;
+                    this.createParticles();
+                }
+            }
+            
+            createParticles() {
+                for (let i = 0; i < 300; i++) {
+                    this.particles.push(new Particle(this.x, this.y, this.color));
+                }
+            }
+            
+            draw() {
+                if (!this.exploded) {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color;
+                    ctx.fill();
+                }
+            }
+        }
+        
+        // 动画循环
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            // 清空画布
+            ctx.fillStyle = 'rgba(248, 240, 227, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // 更新和绘制烟花
+            for (let i = fireworks.length - 1; i >= 0; i--) {
+                fireworks[i].update();
+                fireworks[i].draw();
+                
+                if (fireworks[i].exploded) {
+                    fireworks.splice(i, 1);
+                }
+            }
+            
+            // 更新和绘制粒子
+            for (let i = particles.length - 1; i >= 0; i--) {
+                particles[i].update();
+                particles[i].draw();
+                
+                if (particles[i].opacity <= 0) {
+                    particles.splice(i, 1);
+                }
+            }
+        }
+        
+        // 启动动画
+        animate();
+        
+        // 合并烟花的粒子到主粒子数组
+        function updateParticles() {
+            for (let i = fireworks.length - 1; i >= 0; i--) {
+                if (fireworks[i].exploded) {
+                    particles.push(...fireworks[i].particles);
+                }
+            }
+        }
+        
+        // 定期更新粒子数组
+        setInterval(updateParticles, 100);
+        
+        // 添加点击事件监听器
+        function addFireworksEventListeners() {
+            const elements = document.querySelectorAll('.item, h1, h2, h3');
+            
+            elements.forEach(element => {
+                // 只为.item, h2, h3元素添加移动效果，h1不添加
+                if (element.tagName.toLowerCase() !== 'h1') {
+                    element.classList.add('moving');
+                    
+                    // 为每个元素设置不同的动画延迟和持续时间，使移动更自然随机
+                    element.style.animationDelay = Math.random() * 10 + 's';
+                    element.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                }
+                
+                element.addEventListener('click', function(e) {
+                    // 放大效果
+                    this.style.transform = 'scale(1.3)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 300);
+                    
+                    const rect = this.getBoundingClientRect();
+                    const containerRect = document.querySelector('.container').getBoundingClientRect();
+                    const x = rect.left + rect.width / 2 - containerRect.left;
+                    const y = rect.top + rect.height / 2 - containerRect.top;
+                    
+                    // 放出更多束烟花
+                    for (let i = 0; i < 20; i++) {
+                        setTimeout(() => {
+                            fireworks.push(new Firework(x, y));
+                        }, i * 40);
+                    }
+                });
+            });
+        }
+        
+        // 在页面上持续放烟花
+        function createFireworks() {
+            const containerWidth = document.querySelector('.container').offsetWidth;
+            const containerHeight = document.querySelector('.container').offsetHeight;
+            
+            // 在页面四周和中间随机位置生成多个烟花
+            for (let i = 0; i < 5; i++) {
+                let x, y;
+                
+                // 随机选择位置
+                const positionType = Math.floor(random(0, 5));
+                switch (positionType) {
+                    case 0: // 左侧
+                        x = 0;
+                        y = random(0, containerHeight);
+                        break;
+                    case 1: // 右侧
+                        x = containerWidth;
+                        y = random(0, containerHeight);
+                        break;
+                    case 2: // 顶部
+                        x = random(0, containerWidth);
+                        y = 0;
+                        break;
+                    case 3: // 底部
+                        x = random(0, containerWidth);
+                        y = containerHeight;
+                        break;
+                    case 4: // 中间
+                        x = random(0, containerWidth);
+                        y = random(0, containerHeight);
+                        break;
+                }
+                
+                fireworks.push(new Firework(x, y));
+            }
+        }
+        
+        // 定期在页面上放烟花
+        setInterval(createFireworks, 200);
+        
+        // 页面加载完成后添加事件监听器
+        window.addEventListener('DOMContentLoaded', addFireworksEventListeners);
+    </script>
+</body>
+</html>
