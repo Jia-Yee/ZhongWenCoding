@@ -15,10 +15,10 @@ Click the horse for slow-mo :)
   --delay-gap: 8;
   --horse-width: 3.8rem;
   --horse-height: 2.5rem;
-  --color-horse: rgba(50, 50, 50, 1);
-  --color-horse-back: rgba(30, 30, 30, 1);
-  --color-hair: rgba(70, 70, 70, 1);
-  --color-hoof: rgba(0, 0, 0, 1);
+  --color-horse: rgb(255, 215, 0);
+  --color-horse-back: rgba(255, 180, 0, 1);
+  --color-hair: rgba(255, 165, 0, 1);
+  --color-hoof: rgba(200, 150, 0, 1);
   --color-dust: #AF540B;
   --color-floor: #F1D1AF;
   --color-sky: #C4C4FF;
@@ -31,10 +31,10 @@ input[type=checkbox] {
 input[type=checkbox]:checked ~ label {
   --outlines: white;
   --speed: 8s;
-  --color-horse: rgba(50, 50, 50, 0.3);
-  --color-horse-back: rgba(30, 30, 30, 0.3);
-  --color-hair: rgba(70, 70, 70, 0.3);
-  --color-hoof: rgba(0, 0, 0, 0.3);
+  --color-horse: rgba(255, 215, 0, 0.3);
+  --color-horse-back: rgba(255, 180, 0, 0.3);
+  --color-hair: rgba(255, 165, 0, 0.3);
+  --color-hoof: rgba(200, 150, 0, 0.3);
 }
 
 * {
@@ -1930,11 +1930,25 @@ label {
   pointer-events: none; /* 防止标题阻挡点击事件 */
 }
 
+/* 金色闪烁动画 */
+@keyframes goldFlash {
+  0%, 100% { 
+    color: red; 
+    text-shadow: 0 0 5px gold, 0 0 10px gold, 0 0 15px gold; 
+  }
+  50% { 
+    color: gold; 
+    text-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px red; 
+  }
+}
+
 .title h1 {
   font-size: 0.8rem;
   margin: 0;
   font-weight: bold;
   white-space: nowrap;
+  color: red;
+  animation: goldFlash 0.5s ease-in-out infinite;
 }
 
 .title p {
